@@ -1,20 +1,15 @@
 
-/* :root {
-    --single-line-body-base-font-family: "Inter", Helvetica;
+:root {
+
     --single-line-body-base-font-weight: 400;
     --single-line-body-base-font-size: 16px;
     --single-line-body-base-letter-spacing: 0px;
     --single-line-body-base-line-height: 100%;
     --single-line-body-base-font-style: normal;
-    --body-base-font-family: "Inter", Helvetica;
     --body-base-font-weight: 400;
     --body-base-font-size: 16px;
     --body-base-letter-spacing: 0px;
     --body-base-line-height: 139.9999976158142%;
-    --body-base-font-style: normal;
-    --body-link-font-family: "Inter", Helvetica;
-    --body-link-font-weight: 400;
-    --body-link-font-size: 16px;
     --body-link-letter-spacing: 0px;
     --body-link-line-height: 139.9999976158142%;
     --body-link-font-style: normal;
@@ -37,23 +32,3 @@
     --color-primitives-slate-900: rgba(48, 48, 48, 1);
     --color-primitives-slate-200: rgba(227, 227, 227, 1);
     }
-
-    To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
-    <body data-color-mode="SDS-light">
-    <!-- the rest of your content -->
-    </body>
-    You can apply the theme on any DOM node, not just the `body`
-   [data-color-mode="SDS-light"] {
-    --color-background-default-default: var(--color-primitives-white-1000);
-    --color-text-default-default: var(--color-primitives-gray-900);
-    --color-text-default-tertiary: var(--color-primitives-gray-400);
-    --color-border-default-default: var(--color-primitives-gray-300);
-    --color-text-neutral-default: var(--color-primitives-slate-900);
-    }
-    [data-color-mode="SDS-dark"] {
-    --color-background-default-default: var(--color-primitives-gray-900);
-    --color-text-default-default: var(--color-primitives-white-1000);
-    --color-text-default-tertiary: var(--color-primitives-white-400);
-    --color-border-default-default: var(--color-primitives-gray-600);
-    --color-text-neutral-default: var(--color-primitives-slate-200);
-    }  */

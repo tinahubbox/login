@@ -15,8 +15,9 @@
     src: url(../Fonts/Moderat-Medium.ttf);
  }
 body {
+    display:flex;
     background-color: #e8ecec;
-    font-family: Moderat;
+    font-family: Moderat-black;
 }
 
 .form-login {
@@ -33,14 +34,40 @@ font-size: 16px;
 }
 
 .box-form {
-display: block;
+padding-top: 20px;
+padding-left: 20px;
+padding-right: 20px;
 width: 495px;
 height: 450px;
-position: relative;
+position:relative;
 background-color: #ffffff;
-align-content: flex-start;
 }
+.label-form{
+    width: 100%;
+    display:flex;
+    justify-content:flex-start;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.input-form{
+    display: block;
+    justify-content: flex-start;
+    margin-left: 10px;
+}
+.forgot-password{
+    color: black;
 
+}
+.button{
+    width: 100%;
+    align-items: center;
+    background-color: #def200;
+    border-radius: var(--size-radius-200);
+    padding: var(--size-space-300);
+    margin-top:20px;
+    margin-bottom:20px;
+}
 /* 
 .form-log-in .input-field {
 display: flex;
