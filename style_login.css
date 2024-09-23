@@ -29,7 +29,6 @@ padding-bottom: 287px;
 padding-left:523px;
 gap: var(--size-space-600);
 justify-content: center;
-font-size: 16px;
 }
 
 .box-form {
@@ -39,7 +38,9 @@ padding-right: 20px;
 width: 495px;
 height: 450px;
 position:relative;
+border-radius: var(--size-radius-200);
 background-color: #ffffff;
+
 }
 .label-form{
     width: 100%;
@@ -53,11 +54,8 @@ background-color: #ffffff;
     width: 100%; 
     height: 100%; 
     border-radius: 8px; 
-    overflow: hidden; 
-    border: 1px #B3B3B3; 
     justify-content: flex-start; 
     align-items: center; 
-    font-style: ; 
 
     
 }
@@ -96,6 +94,7 @@ background-color: #ffffff;
     width: 495px;
     height: 600px;
     position:relative;
+    border-radius: var(--size-radius-200);
     background-color: #ffffff;
 }
 .error {
