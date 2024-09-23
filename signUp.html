@@ -13,36 +13,41 @@
     <div class="form-login-signup"> 
         <h1>Inserisci i tuoi dati</h1>
         <div class="box-form-signup">
-            <form  >
+            <form id="form" >
                 <div class="label-form">
-                    <label for="lname">Nome*:</label><br>
+                    <label for="name">Nome*:</label><br>
                 </div>
                 <div >
-                    <input type="text" id="fname" value="Mario"class="input-form"><br>
+                    <input type="text" id="name" value="" class="input-form"><br>
+                    <span id="error-name" class="error"></span>
                 </div>
                 <div class="label-form">
-                    <label for="lprename">Cognome*:</label><br>
+                    <label for="surname">Cognome*:</label><br>
                 </div>
                 <div>
-                    <input type="text" id="fprename" value="Rossi"class="input-form"><br><br>
+                    <input type="text" id="surname" value="" class="input-form"><br>
+                    <span id="error-surname" class="error"></span>
                 </div>
                 <div class="label-form">
-                    <label for="lemail">Email*:</label><br>
+                    <label for="email">Email*:</label><br>
                 </div>
                 <div>
-                    <input type="text" id="femail" value="mario.rossi@gmail.com"class="input-form"><br><br>
+                    <input type="text" id="email" value="" class="input-form"><br><br>
+                    <span id="error-email" class="error"></span>
                 </div>
                 <div class="label-form">
-                    <label for="lpassword">Password*:</label><br>
+                    <label for="password">Password*:</label><br>
                 </div>
                 <div>
-                    <input type="text" id="fpassword" value="**********"class="input-form"><br><br>
+                    <input type="text" id="password" value="" class="input-form"><br><br>
+                    <span id="error-password" class="error"></span>
                 </div>
                 <div class="label-form">
-                    <label for="lpassword">Confermo password*:</label><br>
+                    <label for="checkpassword">Confermo password*:</label><br><br>
                 </div>
                 <div>
-                    <input type="text" id="fpassword" value="**********"class="input-form"><br><br>
+                    <input type="text" id="checkpassword" value="" class="input-form"><br>
+                    <span id="error-checkpassword" class="error"></span><br>
                 </div>
                 <input type="checkbox" id="informativa" name="informativa" value="informativa">
                 <label for="informativa"> Accetto e acconsento l'informativa sulla privacy</label>
@@ -50,4 +55,5 @@
             </form>
         </div>
 </body>
+<script src="login.js"> </script>
 </html>

@@ -14,24 +14,24 @@
     <div class="form-login"> 
         <h1>accedi o registrati</h1>
         <div class="box-form">
-            <form >
+            <form id="form">
                 <div class="label-form">
                     <label for="fname"class="">Email*:</label><br>
                 </div>
                 <div >
-                    <input type="text" id="email" name="femail" value=""class="input-form"><br>
+                    <input type="text" id="email" name="femail" value="" class="input-form"><br>
                     <span id="error-email" class="error"></span>
                 </div>
                 <div class="label-form">
-                    <label for="lname"class="">Password*:</label><br>
+                    <label for="name"class="">Password*:</label><br>
                 </div>
                 <div>
-                    <input type="text" id="lname" name="lname" value=""class="input-form"><br>
-                    <span class="error"></span>
+                    <input type="text" id="psw" name="password" value="" class="input-form"><br>
+                    <span id="error-psw" class="error"></span>
                 </div>
                 <input type="submit" class ="button" value="accedi"><br>
                 <a href="#" class="forgot-password"> Password dimenticata?</a><br>
-                <button class ="button">registrati</button>
+                <button class ="button" onclick="window.location.href='signUp.html'">registrati</button>
 
             </form>
         </div>
