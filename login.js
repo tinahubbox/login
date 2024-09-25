@@ -23,7 +23,7 @@ function matchPassword() {
     var pw1 = document.getElementById("password").value;     
     var pw2 = document.getElementById("checkpassword").value;
     if(pw1 !==pw2){
-        checkpassword.innerText="la password non è corretta"}
+        checkpassword.innerText="la password non coincide"}
         else {
             checkpassword.innerText = ""; 
         }
