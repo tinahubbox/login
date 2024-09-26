@@ -14,7 +14,10 @@
     font-family: 'Moderat-Medium';
     src: url(../Fonts/Moderat-Medium.ttf);
  }
-body {
+ * {
+  box-sizing: border-box;
+}
+ body {
     background-color: #e8ecec;
     font-family: Moderat-black;
 }
@@ -111,54 +114,64 @@ input:focus {
 }
 
 /* Impostazioni generali del menu */
-.user-menu {
-  width: 100%; /* Larghezza completa */
-  max-width: 400px; /* Se desideri limitare la larghezza */
-  margin-top: 100px; /* Centrare il menu */
-  border-radius: 5px; /* Arrotonda gli angoli */
-  position: relative; /* Assicura il posizionamento normale del menu */
-  left: 0; /* Allinea il menu all'estrema sinistra */
-}
-
-.menu-list {
-  list-style-type: none; /* Rimuovi i punti elenco */
-  margin: 0;
+.page-container {
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw; 
   padding: 0;
 }
 
-.menu-item {
-  border-bottom: 1px solid #ddd; /* Linea divisoria tra le voci */
+.user-menu {
+  width: 500px; /* Imposta una larghezza fissa per il menu laterale */
+  padding: 10px;
+  height: auto; /* Altezza automatica per adattarsi al contenuto */
+  position: relative; /* Per garantire che stia a sinistra */
 }
 
-.menu-item:last-child {
-  border-bottom: none; /* Nessuna linea sull'ultimo elemento */
+.menu-list {
+  list-style-type: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-bottom: 10px;
 }
 
 .menu-link {
   display: flex;
   justify-content: space-between; /* Spazia tra il testo e la freccia */
   align-items: center;
-  padding: 15px 20px; /* Spazio interno */
-  font-size: 16px;
-  color: #000;
+  padding: 10px;
   text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd; 
 }
 
 .menu-link:hover {
-  background-color: #f0f0f0; /* Colore di sfondo al passaggio del mouse */
+  background-color: #e0e0e0; /* Colore al passaggio del mouse */
 }
 
-.menu-link .arrow {
+.arrow {
   font-size: 18px;
-  color: #999;
+  color: #888;
 }
+.mobile-menu-btn {
+  display: none; /* Nascondi il pulsante su schermi grandi */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .dynamic-content {
+  flex-grow: 1; /* Fa in modo che il contenuto occupi tutto lo spazio rimanente a destra */
   padding: 20px;
-  flex-grow: 1; /* Fa in modo che il contenuto occupi lo spazio rimanente a destra */
-  margin-left: 20px; /* Distanza tra il menu e il contenuto */
-  height: auto;
-  min-height: 100px;
+  text-align: center;
 }
+
 
 /* Stili specifici per dispositivi mobili */
 @media (max-width: 768px) {
