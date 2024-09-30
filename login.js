@@ -142,7 +142,11 @@ function showContent(section) {
                     </div>
                     <button type="button" onclick="aggiornaDati()" class="button">Aggiorna i tuoi dati</button>
                 </form>
-                `;
+                <div>
+                    <button type= "button" onclick="documents()" class="button">I tuoi documenti</button>
+                </div>
+                    <a href="#" class="delete-your-account"> cancella il tuo account</a><br>
+                <div> `;
             break;
         case 'esci':
             content = `

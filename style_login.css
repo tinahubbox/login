@@ -356,17 +356,6 @@ body.sub-menu-opened:after {
     }
 }
 
-/* Annulla padding colonne Bootstrap per non interferire con il CSS di Elementor */
-/* .row {
-    margin: 0!important;
-}
-.row>* {
-    padding: 0!important;
-} */
-/* .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-    max-width: unset;
-    padding: 0;
-} */
 
 h1,
 h2,
@@ -1630,11 +1619,19 @@ div[data-elementor-type="jet-listing-items"] .prices,
     width: 74% !important;
 }
 .mobile-menu-btn {
-  display: none; /* Nascondi il pulsante su schermi grandi */
+  display: none; 
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
+.delete-your-account{
+    color: red;
+    text-align: left;
+    text-decoration: none; 
+    display: block; 
+    margin-top: 20px; 
+}
+
 
 /* Media query per schermi di larghezza massima 1024px */
 @media (max-width: 1024px) {
@@ -1643,7 +1640,6 @@ div[data-elementor-type="jet-listing-items"] .prices,
         position: absolute;
         right: 16px;
         top: 15px;
-        /* Riduci la larghezza per schermi con larghezza massima di 1024px */
     }
 }
 
