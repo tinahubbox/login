@@ -720,10 +720,6 @@ header.sticky .header-menu>ul>li>a {
     bottom: 6px;
 }
 
-/* .header-menu .sub-menu a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-} */
 
 .header-menu .cta a {
     background-color: #DEF200;

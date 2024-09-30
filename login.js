@@ -36,16 +36,13 @@ form.addEventListener('submit', (e) => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // Salva i dati dell'utente in localStorage
+        // Salvataggio dati
         localStorage.setItem("userNome", nome);
         localStorage.setItem("userCognome", cognome);
         localStorage.setItem("userEmail", email);
         localStorage.setItem("userPassword", password);
 
-        // Mostra un alert o messaggio di conferma
         alert("Registrazione completata!");
-
-        // Reindirizza alla pagina accedi.html
         window.location.href = "Accedi.html";
     }
 });
@@ -92,7 +89,8 @@ function showContent(section) {
             content = `
                 <h1>Ciao!</h1>
                 <p>Le tue auto preferite</p>
-                <div class="heart">❤️</div>`;
+                <div class="heart">❤️</div>
+                <button class="button">cerca la tua auto</button>`;
             break;
         case 'ricerche':
             content = `
@@ -150,8 +148,8 @@ function showContent(section) {
             break;
         case 'esci':
             content = `
-                <h1>Sei sicuro di voler uscire?</h1>
-                <button onclick="logout()">Conferma Esci</button>`;
+                <h1>Sei sicuro di voler uscire?</h1><br>
+                <button onclick="logout()" class="button">Esci</button>`;
             break;
         default:
             content = `
