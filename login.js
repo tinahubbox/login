@@ -103,13 +103,11 @@ function showContent(section) {
                 <p>Qui puoi vedere le valutazioni delle tue auto.</p>`;
             break;
         case 'dati':
-            // Recupera i dati salvati nel localStorage
+            // Recupera i dati salvati
             const nome = localStorage.getItem("userNome") || '';
             const cognome = localStorage.getItem("userCognome") || '';
             const email = localStorage.getItem("userEmail") || '';
             const password = localStorage.getItem("userPassword") || '';
-
-            // Form per mostrare/modificare i dati
             content = `
                 <h1>Ciao!</h1>
                 <h2>I tuoi dati personali</h2>
@@ -160,14 +158,14 @@ function showContent(section) {
 
     document.getElementById('dynamic-content').innerHTML = content;
 }
-
+// Aggiornamento dei dati utente salvati
 function aggiornaDati() {
-    // Aggiorna i dati utente salvati
+    
     const nome = document.getElementById("nome").value;
     const cognome = document.getElementById("cognome").value;
     const password = document.getElementById("password").value;
 
-    // Salva di nuovo i dati aggiornati nel localStorage
+// Salvataggio dei nuovi dati aggiornati nel localStorage
     localStorage.setItem("userNome", nome);
     localStorage.setItem("userCognome", cognome);
     localStorage.setItem("userPassword", password);
@@ -176,4 +174,7 @@ function aggiornaDati() {
 }
 function logout() {
     alert("Logout effettuato!");
+}
+function documents(){
+    window.location.href="documents.html";
 }
