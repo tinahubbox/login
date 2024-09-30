@@ -122,10 +122,10 @@ input:focus {
 }
 
 .user-menu {
-  width: 500px; /* Imposta una larghezza fissa per il menu laterale */
-  padding: 10px;
-  height: auto; /* Altezza automatica per adattarsi al contenuto */
-  position: relative; /* Per garantire che stia a sinistra */
+  width: 500px; 
+  padding-top: 150px;
+  height: auto; 
+  position: relative; 
 }
 
 .menu-list {
@@ -140,7 +140,7 @@ input:focus {
 
 .menu-link {
   display: flex;
-  justify-content: space-between; /* Spazia tra il testo e la freccia */
+  justify-content: space-between; 
   align-items: center;
   padding: 10px;
   text-decoration: none;
@@ -150,7 +150,7 @@ input:focus {
 }
 
 .menu-link:hover {
-  background-color: #e0e0e0; /* Colore al passaggio del mouse */
+  background-color: #e0e0e0; 
 }
 
 .arrow {
@@ -158,14 +158,14 @@ input:focus {
   color: #888;
 }
 .mobile-menu-btn {
-  display: none; /* Nascondi il pulsante su schermi grandi */
+  display: none; 
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .dynamic-content {
-  flex-grow: 1; /* Fa in modo che il contenuto occupi tutto lo spazio rimanente a destra */
+  flex-grow: 1; 
   padding: 20px;
   text-align: center;
 }
@@ -509,24 +509,7 @@ header .menu-item-has-children {
     padding-right: 5px;
 }
 
-/* header .menu-item-has-children:after {
-    content: '\f140';
-    font-family: 'dashicons';
-    color: white;
-    position: absolute;
-    bottom: -1px;
-    right: -17px;
-    display: block;
-} */
 
-/* header .menu-item-has-children .sub-menu {
-    display: none;
-    position: absolute;
-    background: white;
-    list-style-type: none;
-    width: 100%;
-    padding: 10px;
-} */
 
 
 header .menu-item-has-children .sub-menu li a {
@@ -681,19 +664,7 @@ header.sticky .header-menu>ul>li>a {
     display: inline-block
 }
 
-/* .header-menu .sub-menu a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #DEF200;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
 
-} */
 
 .sub-menu-scopri .box-ctas .cta {
     height: 100%;
