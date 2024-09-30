@@ -1629,6 +1629,12 @@ div[data-elementor-type="jet-listing-items"] .prices,
 .filtri .select2.select2-container.select2-container--default {
     width: 74% !important;
 }
+.mobile-menu-btn {
+  display: none; /* Nascondi il pulsante su schermi grandi */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 /* Media query per schermi di larghezza massima 1024px */
 @media (max-width: 1024px) {
@@ -1647,6 +1653,45 @@ div[data-elementor-type="jet-listing-items"] .prices,
         width: 150px;
         /* Riduci la larghezza per schermi con larghezza massima di 768px */
     }
+    .user-menu {
+      display: none; /* Nascondi il menu laterale su schermi piccoli */
+  }
+
+  .mobile-menu-btn {
+      display: block; /* Mostra il pulsante del menu in modalità mobile */
+  }
+  .menu-toggler {
+    display: block;
+}
+
+  /* Mostra il menu laterale come un menu a comparsa */
+  .user-menu.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%; /* Menu laterale occupa il 70% dello schermo */
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+.menu-toggler-icon {
+  cursor: pointer;
+}
+
+  /* Profilo utente */
+.profile-menu {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 30px;
+  cursor: pointer;
+}
 }
 
 /* Media query per schermi di larghezza massima 576px */

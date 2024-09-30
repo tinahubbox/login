@@ -4,31 +4,59 @@ form.addEventListener('submit', (e) => {
     var inputs = form.querySelectorAll('input:not(.button, #informativa)');
     console.log(inputs);
     
-    inputs.forEach((input)=>{
-        var error=document.getElementById(`error-${input.id}`);
-        console.log(error);
-        
-        if(!input.value.trim()){
+    let formValid = true; // Variabile per tracciare se il form è valido
+    inputs.forEach((input)=> {
+        var error = document.getElementById(`error-${input.id}`);
+        if (!input.value.trim()) {
             e.preventDefault();
-            error.innerText='campo obbligatorio';
-        } else{
-            error.innerText='';
+            error.innerText = 'campo obbligatorio';
+            formValid = false; // Imposta su false se uno dei campi è vuoto
+        } else {
+            error.innerText = '';
         }
-        });
-        matchPassword();
     });
 
-let checkpassword=document.getElementById('error-checkpassword')
+    matchPassword();
+
+    // Controllo sulla password
+    if (formValid && matchPassword()) {
+        // Se il form è valido, salva i dati
+        const nome = document.getElementById("name").value;
+        const cognome = document.getElementById("surname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        localStorage.setItem("userNome", nome);
+        localStorage.setItem("userCognome", cognome);
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", password);
+
+        alert("Registrazione completata!");
+    }
+
+    // Controlla la privacy
+    let errorPrivacy = document.getElementById('errorPrivacy');
+    let checkbox = document.querySelector("input[id=informativa]");
+    if (!checkbox.checked) {
+        e.preventDefault();
+        errorPrivacy.innerText = 'Devi accettare per poterti registrare'; 
+    } else {
+        errorPrivacy.innerText = '';
+    }
+});
+
 function matchPassword() {
     var pw1 = document.getElementById("password").value;     
     var pw2 = document.getElementById("checkpassword").value;
-    if(pw1 !==pw2){
-        checkpassword.innerText="la password non coincide"}
-        else {
-            checkpassword.innerText = ""; 
-        }
+    if (pw1 !== pw2) {
+        document.getElementById('error-checkpassword').innerText = "La password non coincide";
+        return false;
+    } else {
+        document.getElementById('error-checkpassword').innerText = ""; 
+        return true;
     }
-        	
+}
+	
 let privacy=document.querySelector('form');
 let checkbox = document.querySelector("input[id=informativa]");
 privacy.addEventListener('submit', (e) => {
@@ -42,7 +70,14 @@ privacy.addEventListener('submit', (e) => {
         errorPrivacy.innerText = '';
     }
 });
+document.addEventListener('click', function(event) {
+    const isClickInsideMenu = mobileMenu.contains(event.target);
+    const isClickOnToggler = menuToggler.contains(event.target);
 
+    if (!isClickInsideMenu && !isClickOnToggler) {
+        mobileMenu.classList.remove('active');
+    }
+});
 //parte dinamica del login
 function showContent(section) {
     let content = '';
@@ -65,9 +100,44 @@ function showContent(section) {
                 <p>Qui puoi vedere le valutazioni delle tue auto.</p>`;
             break;
         case 'dati':
+            // Recupera i dati salvati nel localStorage
+            const nome = localStorage.getItem("userNome") || '';
+            const cognome = localStorage.getItem("userCognome") || '';
+            const email = localStorage.getItem("userEmail") || '';
+            const password = localStorage.getItem("userPassword") || '';
+
+            // Form per mostrare/modificare i dati
             content = `
-                <h1>Dati Personali</h1>
-                <p>Modifica i tuoi dati personali qui.</p>`;
+                <h1>Ciao!</h1>
+                <h2>I tuoi dati personali</h2>
+                <form id="form">
+                    <div class="label-form">
+                        <label for="nome">Nome:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="nome" value="${nome}"class="input-form">
+                    </div>
+                    <div class="label-form">
+                        <label for="cognome">Cognome:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="cognome" value="${cognome}"class="input-form">
+                    </div>
+                    <div class="label-form">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div>
+                        <input type="email" id="email" value="${email}"class="input-form" >
+                    </div>
+                    <div class="label-form">
+                        <label for="password">Password:</label>
+                    </div>
+                    <div>
+                        <input type="password" id="password" value="${password}"class="input-form">
+                    </div>
+                    <button type="button" onclick="aggiornaDati()" class="button">Aggiorna i tuoi dati</button>
+                </form>
+                `;
             break;
         case 'esci':
             content = `
@@ -84,6 +154,19 @@ function showContent(section) {
     document.getElementById('dynamic-content').innerHTML = content;
 }
 
+function aggiornaDati() {
+    // Aggiorna i dati utente salvati
+    const nome = document.getElementById("nome").value;
+    const cognome = document.getElementById("cognome").value;
+    const password = document.getElementById("password").value;
+
+    // Salva di nuovo i dati aggiornati nel localStorage
+    localStorage.setItem("userNome", nome);
+    localStorage.setItem("userCognome", cognome);
+    localStorage.setItem("userPassword", password);
+
+    alert("Dati aggiornati con successo!");
+}
 function logout() {
     alert("Logout effettuato!");
 }
