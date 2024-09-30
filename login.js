@@ -1,14 +1,13 @@
 //controllo sul form
 const form = document.getElementById('form');
 form.addEventListener('submit', (e) => {
-    var inputs = form.querySelectorAll('input:not(.button, #informativa)');
-    console.log(inputs);
-    
+    e.preventDefault()
+    var inputs = form.querySelectorAll('input:not(.button, #informativa)');   
     let formValid = true; // Variabile per tracciare se il form è valido
+
     inputs.forEach((input)=> {
         var error = document.getElementById(`error-${input.id}`);
         if (!input.value.trim()) {
-            e.preventDefault();
             error.innerText = 'campo obbligatorio';
             formValid = false; // Imposta su false se uno dei campi è vuoto
         } else {
@@ -16,32 +15,38 @@ form.addEventListener('submit', (e) => {
         }
     });
 
-    matchPassword();
-
-    // Controllo sulla password
-    if (formValid && matchPassword()) {
-        // Se il form è valido, salva i dati
-        const nome = document.getElementById("name").value;
-        const cognome = document.getElementById("surname").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        localStorage.setItem("userNome", nome);
-        localStorage.setItem("userCognome", cognome);
-        localStorage.setItem("userEmail", email);
-        localStorage.setItem("userPassword", password);
-
-        alert("Registrazione completata!");
+    if (!matchPassword()) {
+        formValid = false;
     }
 
     // Controlla la privacy
     let errorPrivacy = document.getElementById('errorPrivacy');
     let checkbox = document.querySelector("input[id=informativa]");
     if (!checkbox.checked) {
-        e.preventDefault();
-        errorPrivacy.innerText = 'Devi accettare per poterti registrare'; 
+        errorPrivacy.innerText = 'Devi accettare per poterti registrare';
+        formValid = false;
     } else {
         errorPrivacy.innerText = '';
+    }
+
+    // Se il form è valido, salva i dati e reindirizza alla pagina di accesso
+    if (formValid) {
+        const nome = document.getElementById("name").value;
+        const cognome = document.getElementById("surname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Salva i dati dell'utente in localStorage
+        localStorage.setItem("userNome", nome);
+        localStorage.setItem("userCognome", cognome);
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", password);
+
+        // Mostra un alert o messaggio di conferma
+        alert("Registrazione completata!");
+
+        // Reindirizza alla pagina accedi.html
+        window.location.href = "Accedi.html";
     }
 });
 
