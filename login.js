@@ -95,12 +95,14 @@ function showContent(section) {
         case 'ricerche':
             content = `
                 <h1>Ricerche Salvate</h1>
-                <p>Ecco le tue ricerche recenti</p>`;
+                <p>Ecco le tue ricerche recenti</p>
+                <button class="button">cerca la tua auto</button>`;
             break;
         case 'valutazione':
             content = `
                 <h1>Valutazione Auto</h1>
-                <p>Qui puoi vedere le valutazioni delle tue auto.</p>`;
+                <p>Qui puoi vedere le valutazioni delle tue auto.</p>
+                <button class="button">cerca la tua auto</button>`;
             break;
         case 'dati':
             // Recupera i dati salvati
@@ -154,6 +156,7 @@ function showContent(section) {
                 <h1>Ciao!</h1>
                 <p>Le tue auto preferite</p>
                 <div class="heart">❤️</div>`;
+                
     }
 
     document.getElementById('dynamic-content').innerHTML = content;
