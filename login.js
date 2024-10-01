@@ -86,11 +86,49 @@ function showContent(section) {
 
     switch (section) {
         case 'preferiti':
+            //array
+            const favorites=[
+                {
+                    img: 'rangeRover.jpg',
+                    marca: 'Land Rover',
+                    modello: 'Range Rover Evoque',
+                    descrizione: '2.0d i4 mhev S awd 150cv',
+                    prezzo: '€ 34.300',
+                    rata: '€ 594 al mese'   
+                },
+                {
+                    img: 'bmw.jpg',
+                    marca: 'BMW',
+                    modello: 'X3',
+                    descrizione: 'xdrive20d mhev 48V Business Advantage auto',
+                    prezzo: '€ 29.900',
+                    rata: '€ 529 al mese'
+                }
+            ];
             content = `
                 <h1>Ciao!</h1>
                 <p>Le tue auto preferite</p>
                 <div class="heart">❤️</div>
-                <button class="button">cerca la tua auto</button>`;
+                <div class="row">`;
+                favorites.forEach(auto => {
+                    content +=`
+                            <div class="card">
+                             <img src="${auto.img}" class="card-img-top" alt="${auto.marca} ${auto.modello}">
+                            <div class="card-body">
+                                <h5 class="card-title">${auto.marca} ${auto.modello}</h5>
+                                <p class="card-text">${auto.descrizione}</p>
+                                <p class="card-text"><strong>${auto.prezzo}</strong></p>
+                                <p class="card-text"><em>${auto.rata}</em></p>
+                                <a href="#" class="button">Scopri di più</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            content +=`
+            <div>
+                <button class="button">cerca la tua auto</button>;
+            </div>`;
             break;
         case 'ricerche':
             content = `
@@ -104,48 +142,54 @@ function showContent(section) {
                 <p>Qui puoi vedere le valutazioni delle tue auto.</p>
                 <button class="button">cerca la tua auto</button>`;
             break;
-        case 'dati':
-            // Recupera i dati salvati
-            const nome = localStorage.getItem("userNome") || '';
-            const cognome = localStorage.getItem("userCognome") || '';
-            const email = localStorage.getItem("userEmail") || '';
-            const password = localStorage.getItem("userPassword") || '';
-            content = `
-                <h1>Ciao!</h1>
-                <h2>I tuoi dati personali</h2>
-                <form id="form">
-                    <div class="label-form">
-                        <label for="nome">Nome:</label>
+            case 'dati':
+                // Recupera i dati salvati
+                const nome = localStorage.getItem("userNome") || '';
+                const cognome = localStorage.getItem("userCognome") || '';
+                const email = localStorage.getItem("userEmail") || '';
+                const password = localStorage.getItem("userPassword") || '';
+                content = `
+                    <div class="container mt-5">
+                        <div class="row">
+                            <!-- Colonna per i dati personali -->
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h1>Ciao!</h1>
+                                <h2>I tuoi dati personali</h2>
+                                <form id="form">
+                                    <div class="mb-3">
+                                        <label for="nome" class="label-form">Nome:</label>
+                                        <input type="text" id="nome"class="input-form" value="${nome}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cognome" class="label-form">Cognome:</label>
+                                        <input type="text" id="cognome" class="input-form" value="${cognome}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="label-form">Email:</label>
+                                        <input type="email" id="email" class="input-form" value="${email}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="label-form">Password:</label>
+                                        <input type="password" id="password" class="input-form" value="${password}">
+                                    </div>
+                                    <button type="button" onclick="aggiornaDati()" class="button"">Aggiorna i tuoi dati</button>
+                                </form>
+                                <div class="mt-3">
+                                    <button type="button" onclick="documents()" class="button">I tuoi documenti</button>
+                                </div>
+                                <a href="#" class="delete-your-account text-danger mt-3 d-block">cancella il tuo account</a>
+                            </div>
+            
+                            <!-- Colonna per la foto del venditore -->
+                            <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+                                <h3>Il tuo venditore bro</h3>
+                                <img src="esempio.png" alt="Venditore" class="img-fluid rounded">
+                                <p class="mt-2">il tuo venditore bro</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="text" id="nome" value="${nome}"class="input-form">
-                    </div>
-                    <div class="label-form">
-                        <label for="cognome">Cognome:</label>
-                    </div>
-                    <div>
-                        <input type="text" id="cognome" value="${cognome}"class="input-form">
-                    </div>
-                    <div class="label-form">
-                        <label for="email">Email:</label>
-                    </div>
-                    <div>
-                        <input type="email" id="email" value="${email}"class="input-form" >
-                    </div>
-                    <div class="label-form">
-                        <label for="password">Password:</label>
-                    </div>
-                    <div>
-                        <input type="password" id="password" value="${password}"class="input-form">
-                    </div>
-                    <button type="button" onclick="aggiornaDati()" class="button">Aggiorna i tuoi dati</button>
-                </form>
-                <div>
-                    <button type= "button" onclick="documents()" class="button">I tuoi documenti</button>
-                </div>
-                    <a href="#" class="delete-your-account"> cancella il tuo account</a><br>
-                <div> `;
-            break;
+                `;
+                break;
         case 'esci':
             content = `
                 <h1>Sei sicuro di voler uscire?</h1><br>
@@ -180,4 +224,8 @@ function logout() {
 }
 function documents(){
     window.location.href="documents.html";
+}
+function redirectToPersonalArea() {
+    // Reindirizza alla pagina "Accedi.html"
+    window.location.href = 'Accedi.html';
 }
