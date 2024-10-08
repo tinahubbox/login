@@ -108,12 +108,11 @@ function showContent(section) {
             content = `
                 <h1>Ciao!</h1>
                 <p>Le tue auto preferite</p>
-                <div class="heart">❤️</div>
                 <div class="row">`;
                 favorites.forEach(auto => {
                     content +=`
                             <div class="card">
-                             <img src="${auto.img}" class="card-img-top" alt="${auto.marca} ${auto.modello}">
+                                    <img src="${auto.img}" class="card-img-left" alt="${auto.marca} ${auto.modello}">
                             <div class="card-body">
                                 <h5 class="card-title">${auto.marca} ${auto.modello}</h5>
                                 <p class="card-text">${auto.descrizione}</p>
@@ -122,13 +121,12 @@ function showContent(section) {
                                 <a href="#" class="button">Scopri di più</a>
                             </div>
                         </div>
-                    </div>
-                `;
+                `
             });
             content +=`
             <div>
-                <button class="button">cerca la tua auto</button>;
-            </div>`;
+                <button class="button">cerca la tua auto</button>
+            </div>`
             break;
         case 'ricerche':
             content = `
