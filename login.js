@@ -232,13 +232,25 @@ function caricaRicercheSalvate() {
             data.savedFilters.forEach(filter => {
                 let filterContent = `
                     <div class="ricerca-item">
-                        <h3>${filter.filterName}</h3>
-                        <p><strong>Marca:</strong> ${filter.brand ? filter.brand.join(', ') : 'Non specificato'}</p>
-                    </div>`;
-                container.innerHTML += filterContent;
+                        <h3>${filter.filterName}</h3>`;
+                        //tutti i filtri
+                        if (filter.brand && filter.brand.length > 0) {
+                            filterContent += `<p><strong>Marca:</strong> ${filter.brand.join(', ')}</p>`;}                
+                        if (filter.model && filter.model.length > 0) {
+                            filterContent += `<p><strong>Modello:</strong> ${filter.model.join(', ')}</p>`;}
+                        if (filter.power && filter.power.min && filter.power.max) {
+                            filterContent += `<p><strong>Potenza:</strong> da ${filter.power.min} a ${filter.power.max} CV</p>`;}     
+                        // il filtro "price" con "monthlyFee" = "mensile"
+                        if (filter.price && filter.price.monthlyFee) {
+                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration }  massimo ${filter.price.monthlyFee.max ? filter.price.monthlyFee.max : ''}€ </p>`;
+                        }
+                        if (filter.price && filter.price.totalAmount){
+                            filterContent +=`<p><strong> Totale:</strong>  ${filter.price.totalAmount.min ? '>'+filter.price.totalAmount.min+'€' :'' } ${filter.price.totalAmount.max ? '<'+filter.price.totalAmount.max+'€' :''}`}
+                
+                            container.innerHTML += filterContent;
             });
         } else {
-            container.innerHTML = '<p>Nessuna ricerca salvata trovata.</p>';
+            container.innerHTML = '<p>Salva la tua ricerca.</p>';
         }
     })
     .catch((error) => {
