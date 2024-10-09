@@ -132,6 +132,13 @@ function showContent(section) {
             content = `
                 <h1>Ricerche Salvate</h1>
                 <p>Ecco le tue ricerche recenti</p>
+                <div> 
+                    <svg width="48" height="47" viewBox="0 0 48 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 41.125V9.79167C10 8.71458 10.3917 7.79253 11.175 7.02552C11.9583 6.25851 12.9 5.875 14 5.875H34C35.1 5.875 36.0417 6.25851 36.825 7.02552C37.6083 7.79253 38 8.71458 38 9.79167V41.125L24 35.25L10 41.125Z" fill="#C5ACED"/>
+                    </svg>
+                </div>
+                <div id="ricerche-salvate-container">
+                </div>
                 <button class="button">cerca la tua auto</button>`;
             break;
         case 'valutazione':
@@ -202,6 +209,43 @@ function showContent(section) {
     }
 
     document.getElementById('dynamic-content').innerHTML = content;
+    if (section === 'ricerche') {
+        caricaRicercheSalvate(); // Chiama la funzione per ottenere i dati delle ricerche salvate
+    }
+}
+function caricaRicercheSalvate() {
+    fetch('https://jzm00xe65b.execute-api.eu-central-1.amazonaws.com/dev/saved-filters', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Dati ricevuti dall\'API:', data);
+
+        const container = document.getElementById('ricerche-salvate-container');
+        if (data.savedFilters && data.savedFilters.length > 0) {
+            container.innerHTML = ''; // Pulisci il contenitore
+
+            data.savedFilters.forEach(filter => {
+                let filterContent = `
+                    <div class="ricerca-item">
+                        <h3>${filter.filterName}</h3>
+                        <p><strong>Marca:</strong> ${filter.brand ? filter.brand.join(', ') : 'Non specificato'}</p>
+                    </div>`;
+                container.innerHTML += filterContent;
+            });
+        } else {
+            container.innerHTML = '<p>Nessuna ricerca salvata trovata.</p>';
+        }
+    })
+    .catch((error) => {
+        console.error('Errore durante il caricamento delle ricerche salvate:', error);
+        const container = document.getElementById('ricerche-salvate-container');
+        container.innerHTML = '<p>Si è verificato un errore durante il caricamento delle ricerche salvate.</p>';
+    });
 }
 // Aggiornamento dei dati utente salvati
 function aggiornaDati() {
