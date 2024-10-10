@@ -145,6 +145,7 @@ function showContent(section) {
             content = `
                 <h1>Valutazione Auto</h1>
                 <p>Qui puoi vedere le valutazioni delle tue auto.</p>
+                <div id="valutazione-salvate-container" </div>
                 <button class="button">cerca la tua auto</button>`;
             break;
             case 'dati':
@@ -212,7 +213,11 @@ function showContent(section) {
     if (section === 'ricerche') {
         caricaRicercheSalvate(); // Chiama la funzione per ottenere i dati delle ricerche salvate
     }
+    if (section === 'valutazione') {
+        caricaValutazioniSalvate(); // Chiama la funzione per ottenere i dati delle valutazioni auto
+    }
 }
+// funzione per le ricerche
 function caricaRicercheSalvate() {
     fetch('https://jzm00xe65b.execute-api.eu-central-1.amazonaws.com/dev/saved-filters', {
         method: 'POST',
@@ -238,15 +243,30 @@ function caricaRicercheSalvate() {
                             filterContent += `<p><strong>Marca:</strong> ${filter.brand.join(', ')}</p>`;}                
                         if (filter.model && filter.model.length > 0) {
                             filterContent += `<p><strong>Modello:</strong> ${filter.model.join(', ')}</p>`;}
-                        if (filter.power && filter.power.min && filter.power.max) {
-                            filterContent += `<p><strong>Potenza:</strong> da ${filter.power.min} a ${filter.power.max} CV</p>`;}     
+                        if(filter.mileage){
+                            filterContent+= `<p><strong>Chilometraggio:</strong> ${filter.mileage.min ? '>'+filter.mileage.min+'Km' :'' } ${filter.mileage.max ? '<'+filter.mileage.max+'Km' :'' }</p>`;}    
+                        if (filter.power) {
+                            filterContent += `<p><strong>Potenza:</strong> ${filter.power.min ? '>'+filter.power.min+'cv' :''} ${filter.power.max ? '<'+filter.power.max+'cv' :''} </p>`;} 
+                        if (filter.displacement){
+                            filterContent+= `<p><strong>Cilindrata:</strong> ${filter.displacement.min ? '>'+filter.displacement.min :''} ${filter.displacement.max ? '<'+filter.displacement.max :''} </p>`;}  
+                        if (filter.registrationYear){
+                            filterContent+= `<p><strong>Anno di registrazione:</strong> ${filter.registrationYear.min ? '>'+filter.registrationYear.min :''} ${filter.registrationYear.max ? '<'+filter.registrationYear.max :''} </p>`;}
+                        if (filter.traction&& filter.traction.length > 0) {
+                            filterContent+= `<p><strong>Trazione:</strong> ${filter.traction.join(', ')}</p>`;}
+                        if (filter.seats){
+                            filterContent+= `<p><strong>Posti:</strong> ${filter.seats.min ? '>'+filter.seats.min :'' } ${filter.seats.max ? '<'+filter.seats.max :'' }</p>`;
+                        }
                         // il filtro "price" con "monthlyFee" = "mensile"
                         if (filter.price && filter.price.monthlyFee) {
-                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration }  massimo ${filter.price.monthlyFee.max ? filter.price.monthlyFee.max : ''}€ </p>`;
+                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration ? filter.price.monthlyFee.duration+' mesi' :'' } ${filter.price.monthlyFee.min ? '>'+filter.price.monthlyFee.min+'€' : ''} ${filter.price.monthlyFee.max ? '<'+filter.price.monthlyFee.max+'€' : ''} </p>`;
                         }
                         if (filter.price && filter.price.totalAmount){
                             filterContent +=`<p><strong> Totale:</strong>  ${filter.price.totalAmount.min ? '>'+filter.price.totalAmount.min+'€' :'' } ${filter.price.totalAmount.max ? '<'+filter.price.totalAmount.max+'€' :''}`}
-                
+                        if (filter.fuelType&& filter.fuelType.length > 0){
+                            filterContent += `<p><strong>Carburante:</strong> ${filter.fuelType.join(', ')}</p>`;}
+                        if (filter.tags&& filter.tags.length > 0){
+                            filterContent += `<p><strong>tags:</strong> ${filter.tags.join(', ')}</p>`;}
+                        
                             container.innerHTML += filterContent;
             });
         } else {
@@ -259,6 +279,44 @@ function caricaRicercheSalvate() {
         container.innerHTML = '<p>Si è verificato un errore durante il caricamento delle ricerche salvate.</p>';
     });
 }
+//funzione per le valutazioni 
+function caricaValutazioniSalvate(){
+    fetch('https://jzm00xe65b.execute-api.eu-central-1.amazonaws.com/dev/evaluations', {
+        method:'GET', 
+        headers:{
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Dati ricevuti dall\'API:', data);
+
+        const valutazionicontainer = document.getElementById('valutazioni-salvate-container');
+        if(data.requestedEvaluations && data.requestedEvaluations.length>0){
+           valutazionicontainer.innerHTML='';
+           
+           data.requestedEvaluations.forEach(auto=>{
+            let autoContent=  `<div id=valutazioni-item>
+            <p> <strong>marca ${auto.brand} </p>
+            <p> <strong>modello ${auto.model} </p>
+            <p> <strong>versione ${auto.version} </p>
+            <p> <strong>registrazione ${auto.registrationDate} </p>
+            <p> <strong>chilometri ${auto.mileage} </p>
+            <p> <strong> valutazione ${auto.evaluationPrice} </p>
+            </div> `;
+            valutazionicontainer.innerHTML += autoContent;
+           });
+        } else{
+            valutazionicontainer.innerHTML= '<p> Valuta ora la tua auto</p>';
+        }
+    })
+    .catch((error) => {
+        console.error('Errore durante il caricamento delle valutazioni auto:', error);
+        const valutazionicontainer= document.getElementById ('valutazioni-salvate-container'); 
+        valutazionicontainer='<p>Si è verificato un errore durante il caricamento delle valutazioni auto.</p>';
+    });   
+}
+
 // Aggiornamento dei dati utente salvati
 function aggiornaDati() {
     
