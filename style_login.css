@@ -207,7 +207,26 @@ input:focus {
     font-size: 1rem;
     margin-bottom: 10px;
 }
-
+/*ricerche salvate*/
+.ricerca-item {
+    display: grid;
+    background: #DDE8EA;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border:none;
+    padding:20px;
+    justify-content: start;
+}
+.filter-strong{
+    display: inline-block; /* Per far sì che sia inline */
+    background-color: #99B8C4; /* Colore di sfondo simile all'immagine */
+    color: #000; /* Colore del testo */
+    padding: 10px 15px; /* Padding per rendere il badge un po' più grande */
+    margin: 5px; /* Spazio tra i badge */
+    border-radius: 20px; /* Arrotonda i bordi per ottenere l'effetto palla */
+    font-weight: bold; /* Grassetto per il testo */
+    font-size: 14px; /* Dimensione del font */
+}
 /*header*/
 
 
@@ -7361,6 +7380,10 @@ header.sticky .logo-header-sticky {
 .card-body {
     width: 100%; 
     text-align: center; 
+}
+.ricerca-item {
+    width: 100%; 
+    justify-content: center;    
 }
 }
 

@@ -137,7 +137,7 @@ function showContent(section) {
                     <path d="M10 41.125V9.79167C10 8.71458 10.3917 7.79253 11.175 7.02552C11.9583 6.25851 12.9 5.875 14 5.875H34C35.1 5.875 36.0417 6.25851 36.825 7.02552C37.6083 7.79253 38 8.71458 38 9.79167V41.125L24 35.25L10 41.125Z" fill="#C5ACED"/>
                     </svg>
                 </div>
-                <div id="ricerche-salvate-container">
+                <div id="ricerche-salvate-container" >
                 </div>
                 <button class="button">cerca la tua auto</button>`;
             break;
@@ -241,7 +241,11 @@ function caricaRicercheSalvate() {
                         <h3>${filter.filterName}</h3>`;
                         //tutti i filtri
                         if (filter.brand && filter.brand.length > 0) {
-                            filterContent += `<p><strong>Marca:</strong> ${filter.brand.join(', ')}</p>`;}                
+                            filterContent += `<div class="filter-strong">Marca:</div>`;
+                            filter.brand.forEach(brand => {
+                                filterContent += `<span class="badge">${brand}</span>`;
+                            });
+                        }               
                         if (filter.model && filter.model.length > 0) {
                             filterContent += `<p><strong>Modello:</strong> ${filter.model.join(', ')}</p>`;}
                         if(filter.mileage){
@@ -268,7 +272,8 @@ function caricaRicercheSalvate() {
                         if (filter.tags&& filter.tags.length > 0){
                             filterContent += `<p><strong>tags:</strong> ${filter.tags.join(', ')}</p>`;}
                              filterContent += `
-                            <button class="button scopripiu" onclick="scopriDiPiu">Scopri di più</button>`;
+                            <button class="button scopripiu" onclick="scopriDiPiu">Scopri di più</button>
+                            </div>`;
                             container.innerHTML += filterContent;
             });
         } else {
