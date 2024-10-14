@@ -94,7 +94,7 @@ function showContent(section) {
                     modello: 'Range Rover Evoque',
                     descrizione: '2.0d i4 mhev S awd 150cv',
                     prezzo: '€ 34.300',
-                    rata: '€ 594 al mese'   
+                    rata: '€ 594 al mese'
                 },
                 {
                     img: 'bmw.jpg',
@@ -145,7 +145,8 @@ function showContent(section) {
             content = `
                 <h1>Valutazione Auto</h1>
                 <p>Qui puoi vedere le valutazioni delle tue auto.</p>
-                <div id="valutazione-salvate-container" </div>
+                <div id="valutazioni-salvate-container"> 
+                </div>
                 <button class="button">cerca la tua auto</button>`;
             break;
             case 'dati':
@@ -266,7 +267,8 @@ function caricaRicercheSalvate() {
                             filterContent += `<p><strong>Carburante:</strong> ${filter.fuelType.join(', ')}</p>`;}
                         if (filter.tags&& filter.tags.length > 0){
                             filterContent += `<p><strong>tags:</strong> ${filter.tags.join(', ')}</p>`;}
-                        
+                             filterContent += `
+                            <button class="button scopripiu" onclick="scopriDiPiu">Scopri di più</button>`;
                             container.innerHTML += filterContent;
             });
         } else {
@@ -313,7 +315,7 @@ function caricaValutazioniSalvate(){
     .catch((error) => {
         console.error('Errore durante il caricamento delle valutazioni auto:', error);
         const valutazionicontainer= document.getElementById ('valutazioni-salvate-container'); 
-        valutazionicontainer='<p>Si è verificato un errore durante il caricamento delle valutazioni auto.</p>';
+        valutazionicontainer.innerHTML='<p>Si è verificato un errore durante il caricamento delle valutazioni auto.</p>';
     });   
 }
 
