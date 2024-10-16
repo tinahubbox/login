@@ -238,32 +238,73 @@ function caricaRicercheSalvate() {
             data.savedFilters.forEach(filter => {
                 let filterContent = `
                     <div class="ricerca-item">
-                        <h3>${filter.filterName}</h3>`;
+                        <h3 class="ricerca-item-title">${filter.filterName}</h3>`;
                         //tutti i filtri
                         if (filter.brand && filter.brand.length > 0) {
-                            filterContent += `<div class="filter-strong">Marca:</div>`;
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">Marca:</span>`;
                             filter.brand.forEach(brand => {
                                 filterContent += `<span class="badge">${brand}</span>`;
                             });
+                            filterContent += `</div>`;
                         }               
                         if (filter.model && filter.model.length > 0) {
-                            filterContent += `<p><strong>Modello:</strong> ${filter.model.join(', ')}</p>`;}
-                        if(filter.mileage){
-                            filterContent+= `<p><strong>Chilometraggio:</strong> ${filter.mileage.min ? '>'+filter.mileage.min+'Km' :'' } ${filter.mileage.max ? '<'+filter.mileage.max+'Km' :'' }</p>`;}    
-                        if (filter.power) {
-                            filterContent += `<p><strong>Potenza:</strong> ${filter.power.min ? '>'+filter.power.min+'cv' :''} ${filter.power.max ? '<'+filter.power.max+'cv' :''} </p>`;} 
-                        if (filter.displacement){
-                            filterContent+= `<p><strong>Cilindrata:</strong> ${filter.displacement.min ? '>'+filter.displacement.min :''} ${filter.displacement.max ? '<'+filter.displacement.max :''} </p>`;}  
-                        if (filter.registrationYear){
-                            filterContent+= `<p><strong>Anno di registrazione:</strong> ${filter.registrationYear.min ? '>'+filter.registrationYear.min :''} ${filter.registrationYear.max ? '<'+filter.registrationYear.max :''} </p>`;}
-                        if (filter.traction&& filter.traction.length > 0) {
-                            filterContent+= `<p><strong>Trazione:</strong> ${filter.traction.join(', ')}</p>`;}
-                        if (filter.seats){
-                            filterContent+= `<p><strong>Posti:</strong> ${filter.seats.min ? '>'+filter.seats.min :'' } ${filter.seats.max ? '<'+filter.seats.max :'' }</p>`;
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">Modello:</span>`;
+                            filter.model.forEach(model=> {
+                                filterContent += `<span class="badge">${model}</span>`;
+                            });
+                            filterContent += `</div>`;
                         }
+                        //filtri con condizione ternaria 
+                        if (filter.mileage) {
+                            filterContent += `<div class="filter-line">
+                                <span class="filter-strong">Chilometraggio:</span>`;
+                            filterContent += filter.mileage.min ? `<span class="badge">>${filter.mileage.min} Km</span>` : '';
+                            filterContent += filter.mileage.max ? `<span class="badge"><${filter.mileage.max} Km</span>` : '';
+                        
+                            filterContent += `</div>`;
+                        }
+                        if (filter.power) {
+                            filterContent += `<div class="filter-line">
+                                <span class="filter-strong">Potenza:</span>`;
+                            filterContent+= filter.power.min ?  `<span class="badge">>${filter.power.min} cv</span>` : '';
+                            filterContent += filter.power.max ? `<span class="badge"><${filter.power.max} cv</span>` : '';
+                        
+                            filterContent += `</div>`;}
+                        
+                         if (filter.displacement) {
+                                filterContent += `<div class="filter-line">
+                                    <span class="filter-strong">Cilindrata:</span>`;
+                                filterContent+= filter.displacement.min ?  `<span class="badge">>${filter.displacement.min} </span>` : '';
+                                filterContent += filter.displacement.max ? `<span class="badge"><${filter.displacement.max} </span>` : '';
+                            
+                                filterContent += `</div>`;}
+                        if (filter.registrationYear) {
+                                    filterContent += `<div class="filter-line">
+                                        <span class="filter-strong">Anno di registrazione:</span>`;
+                                    filterContent+= filter.registrationYear.min ?  `<span class="badge">>${filter.registrationYear.min} </span>` : '';
+                                    filterContent += filter.registrationYear.max ? `<span class="badge"><${filter.registrationYear.max} </span>` : '';
+                                
+                                    filterContent += `</div>`;}
+                        
+                        if (filter.traction&& filter.traction.length > 0) {
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">Trazione:</span>`;
+                            filter.traction.forEach(traction=> {
+                            filterContent += `<span class="badge">${traction}</span>`;
+                            });
+                            filterContent += `</div>`; } 
+                        if (filter.seats) {
+                                filterContent += `<div class="filter-line">
+                                    <span class="filter-strong">Posti:</span>`;
+                                filterContent+= filter.seats.min ?  `<span class="badge">>${filter.seats.min} </span>` : '';
+                                filterContent += filter.seats.max ? `<span class="badge"><${filter.seats.max} </span>` : '';
+                            
+                        
+                                filterContent += `</div>`;}
+                        
                         // il filtro "price" con "monthlyFee" = "mensile"
                         if (filter.price && filter.price.monthlyFee) {
-                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration ? filter.price.monthlyFee.duration+' mesi' :'' } ${filter.price.monthlyFee.min ? '>'+filter.price.monthlyFee.min+'€' : ''} ${filter.price.monthlyFee.max ? '<'+filter.price.monthlyFee.max+'€' : ''} </p>`;
+                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration ? filter.price.monthlyFee.duration+' mesi' :'' } 
+                            ${filter.price.monthlyFee.min ? '>'+filter.price.monthlyFee.min+'€' : ''} ${filter.price.monthlyFee.max ? '<'+filter.price.monthlyFee.max+'€' : ''} </p>`;
                         }
                         if (filter.price && filter.price.totalAmount){
                             filterContent +=`<p><strong> Totale:</strong>  ${filter.price.totalAmount.min ? '>'+filter.price.totalAmount.min+'€' :'' } ${filter.price.totalAmount.max ? '<'+filter.price.totalAmount.max+'€' :''}`}
