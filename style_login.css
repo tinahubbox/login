@@ -19,7 +19,9 @@
     background-color: #e8ecec;
     font-family: Moderat-black;
 }
-
+#header-hidden{
+    display:none;
+}
 .form-login {
     width: 100%; 
     max-width: 495px; 
@@ -83,6 +85,9 @@ input:focus {
     text-decoration: none;
 
 }
+.button:hover {
+    color: #DEF200 !important;
+    background: #233333 !important;}
 
 .form-login-signup {
     width: 100%; 
@@ -609,6 +614,7 @@ header .menu-item-has-children .sub-menu li a {
 header .menu-toggler {
     display: none;
 }
+header .menu
 
 header .logo-header-mobile {
     display: none;
@@ -7393,6 +7399,9 @@ header.sticky .logo-header-sticky {
 
 /* Stili specifici per dispositivi mobili */
 @media (max-width: 768px) {
+    #header-hidden{
+        display:flex;
+    }
   .user-menu .dropdown-menu {
     width: 100%; 
   }
