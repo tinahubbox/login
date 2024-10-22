@@ -183,7 +183,7 @@ function showContent(section) {
                             </div>
             
                             <!-- Colonna per la foto del venditore -->
-                            <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12 text-center" id=venditore-bro>
                                 <h3>Il tuo venditore bro</h3>
                                 <img src="esempio.png" alt="Venditore" class="img-fluid rounded">
                                 <p class="mt-2">il tuo venditore bro</p>
@@ -361,13 +361,13 @@ function caricaValutazioniSalvate(){
            valutazionicontainer.innerHTML='';
            
            data.requestedEvaluations.forEach(auto=>{
-            let autoContent=  `<div id=valutazioni-item>
-            <p> <strong>marca ${auto.brand} </p>
-            <p> <strong>modello ${auto.model} </p>
-            <p> <strong>versione ${auto.version} </p>
-            <p> <strong>registrazione ${auto.registrationDate} </p>
-            <p> <strong>chilometri ${auto.mileage} </p>
-            <p> <strong> valutazione ${auto.evaluationPrice} </p>
+            let autoContent=  `<div class=valutazioni-item>
+            <div class="filter-line"><span class= "filter-strong"> Marca: </span> <span class="badge"> ${auto.brand} </span></div>
+            <div class="filter-line"><span class= "filter-strong"> Modello: </span> <span class="badge"> ${auto.model} </span></div>
+            <div class="filter-line"><span class= "filter-strong"> Versione: </span> <span class="badge"> ${auto.version} </span></div>
+            <div class="filter-line"><span class= "filter-strong"> Immatricolazione: </span> <span class="badge"> ${auto.registrationDate} </span></div>
+            <div class="filter-line"><span class= "filter-strong"> Chilometri: </span> <span class="badge"> ${auto.mileage} </span></div>
+            <div class="filter-line"><span class= "filter-strong"> Valutazione: </span> <span class="badge"> ${auto.evaluationPrice} </span></div>
             </div> `;
             valutazionicontainer.innerHTML += autoContent;
            });
