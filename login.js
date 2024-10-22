@@ -132,11 +132,6 @@ function showContent(section) {
             content = `
                 <h1>Ricerche Salvate</h1>
                 <p>Ecco le tue ricerche recenti</p>
-                <div> 
-                    <svg width="48" height="47" viewBox="0 0 48 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 41.125V9.79167C10 8.71458 10.3917 7.79253 11.175 7.02552C11.9583 6.25851 12.9 5.875 14 5.875H34C35.1 5.875 36.0417 6.25851 36.825 7.02552C37.6083 7.79253 38 8.71458 38 9.79167V41.125L24 35.25L10 41.125Z" fill="#C5ACED"/>
-                    </svg>
-                </div>
                 <div id="ricerche-salvate-container" >
                 </div>
                 <button class="button">cerca la tua auto</button>`;
@@ -280,7 +275,7 @@ function caricaRicercheSalvate() {
                                 filterContent += `</div>`;}
                         if (filter.registrationYear) {
                                     filterContent += `<div class="filter-line">
-                                        <span class="filter-strong">Anno di registrazione:</span>`;
+                                        <span class="filter-strong">Immatricolazione:</span>`;
                                     filterContent+= filter.registrationYear.min ?  `<span class="badge">>${filter.registrationYear.min} </span>` : '';
                                     filterContent += filter.registrationYear.max ? `<span class="badge"><${filter.registrationYear.max} </span>` : '';
                                 
@@ -301,24 +296,46 @@ function caricaRicercheSalvate() {
                         
                                 filterContent += `</div>`;}
                         
+                        
+        
+                        
                         // il filtro "price" con "monthlyFee" = "mensile"
                         if (filter.price && filter.price.monthlyFee) {
-                            filterContent += `<p><strong> Mensile:</strong> ${filter.price.monthlyFee.duration ? filter.price.monthlyFee.duration+' mesi' :'' } 
-                            ${filter.price.monthlyFee.min ? '>'+filter.price.monthlyFee.min+'€' : ''} ${filter.price.monthlyFee.max ? '<'+filter.price.monthlyFee.max+'€' : ''} </p>`;
-                        }
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">Prezzo mensile:</span>`;
+                            filterContent +=filter.price.monthlyFee.duration ? `<span class="badge"> ${filter.price.monthlyFee.duration}mesi </span>` : '';
+                            filterContent +=filter.price.monthlyFee.min ?  `<span class="badge">> ${filter.price.monthlyFee.min}€ </span>` : '';
+                            filterContent +=filter.price.monthlyFee.max ? `<span class="badge">< ${filter.price.monthlyFee.max}€ </span>` : '';
+                            filterContent += `</div>`;}
+
                         if (filter.price && filter.price.totalAmount){
-                            filterContent +=`<p><strong> Totale:</strong>  ${filter.price.totalAmount.min ? '>'+filter.price.totalAmount.min+'€' :'' } ${filter.price.totalAmount.max ? '<'+filter.price.totalAmount.max+'€' :''}`}
+                            filterContent +=`<div class="filter-line"> <span class= "filter-strong">Prezzo totale:</span>`;
+                            filterContent +=filter.price.totalAmount.min ? `<span class="badge">>  ${filter.price.totalAmount.min}€ </span>` : '';
+                            filterContent += filter.price.totalAmount.max ? `<span class="badge">< ${filter.price.totalAmount.max}€ </span>` : '';
+                            filterContent += `</div>`;}
+
                         if (filter.fuelType&& filter.fuelType.length > 0){
-                            filterContent += `<p><strong>Carburante:</strong> ${filter.fuelType.join(', ')}</p>`;}
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">Carburante:</span>`;
+                            filter.fuelType.forEach(fuelType=> {
+                            filterContent += `<span class="badge">${fuelType}</span>`;
+                            });
+                            filterContent += `</div>`; } 
+
                         if (filter.tags&& filter.tags.length > 0){
-                            filterContent += `<p><strong>tags:</strong> ${filter.tags.join(', ')}</p>`;}
-                             filterContent += `
+                            filterContent += `<div class="filter-line"> <span class= "filter-strong">tags:</span>`;
+                            filter.tags.forEach(tags=> {
+                            filterContent += `<span class="badge">${tags}</span>`;
+                            });
+                            filterContent += `</div>`; } 
+                            
+                            filterContent += `
                             <button class="button scopripiu" onclick="scopriDiPiu">Scopri di più</button>
                             </div>`;
                             container.innerHTML += filterContent;
             });
         } else {
-            container.innerHTML = '<p>Salva la tua ricerca.</p>';
+            container.innerHTML = `'<p>Cerca la tua prossima macchina </p>
+            <div> <svg width="48" height="47" viewBox="0 0 48 47" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 41.125V9.79167C10 8.71458 10.3917 7.79253 11.175 7.02552C11.9583 6.25851 12.9 5.875 14 5.875H34C35.1 5.875 36.0417 6.25851 36.825 7.02552C37.6083 7.79253 38 8.71458 38 9.79167V41.125L24 35.25L10 41.125Z" fill="#C5ACED"/></svg> </div>>
+                '`
         }
     })
     .catch((error) => {
