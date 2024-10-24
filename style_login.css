@@ -43,22 +43,20 @@
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0px 4px 4px #23333340;
+    padding-bottom: 100px;
   }
 
 .label-form{
     width: 100%;
     display:flex;
     justify-content:flex-start;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-bottom: 20px;
 }
 .input-form{
-    border: 1px solid #D9D9D9;;
-    width: 100%; 
-    height: 100%; 
-    border-radius: 8px; 
-
+    border: 1px solid #D9D9D9;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    padding: 12px;
     
 }
 input:focus {
@@ -73,15 +71,24 @@ input:focus {
     width: 100%;
     align-items: center;
     background-color: #def200;
-    border-radius: var(--size-radius-200);
-    border:none;
-    padding: var(--size-space-300);
-    margin-top:40px;
-    margin-bottom:20px;
-    font-family: Moderat-bold;
-    color:#000000;
+    border-radius: 8px;
+    border: none;
+    color: #000000;
     text-decoration: none;
+    margin-top: 12px;
+    /* margin-bottom: 6px; */
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-family: moderat-black;
+    font-size: 16px;
+ 
 
+}
+.card-body .button{
+    width: 447px;
+}
+.row .button{
+    width: 447px;
 }
 .button:hover {
     color: #DEF200 !important;
@@ -113,7 +120,7 @@ input:focus {
     padding-left: 20px;
     display: block;
     margin-top: 10px;
-    margin-bottom: -20px;
+    margin-bottom: -10px;
 }
 
 /* Impostazioni generali del menu */
@@ -196,6 +203,7 @@ input:focus {
 .card-body {
     display: flex;
     flex-direction: column;
+    align-items: start;
     justify-content: space-between;
 }
 
@@ -210,6 +218,15 @@ input:focus {
     margin-bottom: 10px;
 }
 /*ricerche salvate*/
+#ricerche-salvate-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#ricerche-salvate-container .button{
+    width: 296px;
+}
 .ricerca-item {
     display: flex;
     background: #DDE8EA;
@@ -221,6 +238,7 @@ input:focus {
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: flex-start;
+    width: fit-content;
 }
 .ricerca-item-title{
     display: block;
@@ -247,7 +265,12 @@ input:focus {
     background-color: #99B8C4;
     border-radius: 20px;
     margin: 5px;}
-
+#valutazioni-salvate-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .valutazioni-item{
     display: flex;
     background: #DDE8EA;
@@ -259,6 +282,7 @@ input:focus {
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: flex-start;
+    width: fit-content;
 }
 /*header*/
 
@@ -7434,6 +7458,10 @@ header.sticky .logo-header-sticky {
 #venditore-bro{
     display: none;
 }
+.dynamic-content{
+    margin-left: 4px;
+    margin-right: 4px;
+};
 }
 
 
@@ -7486,7 +7514,7 @@ header.sticky .logo-header-sticky {
 
   .box-form-signup {
     width: 90%; 
-    padding: 10px;
+    padding: 24px;
     height: auto;
   }
  

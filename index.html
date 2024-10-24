@@ -377,7 +377,8 @@
                         <img src="https://cdn3.autobro.it/2024/06/logo-header-sticky.png" alt="logo-header" class="logo-header-sticky">
                     </div>
                     <div class="col-auto sm-auto text-end">
-                        <svg class="menu-toggler-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                       
+                        <svg data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" class="menu-toggler-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                             <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </div>
@@ -391,7 +392,46 @@
             </div>
         </div>
     </header> 
-
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="user menu" id="mobileMenu">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a data-bs-dismiss="offcanvas" class="menu-link" href="#" onclick="showContent('preferiti')">
+                            preferiti
+                            <span class="arrow">›</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a data-bs-dismiss="offcanvas" class="menu-link" href="#" onclick="showContent('ricerche')">
+                            ricerche salvate
+                            <span class="arrow">›</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a data-bs-dismiss="offcanvas" class="menu-link" href="#" onclick="showContent('valutazione')">
+                            valutazione auto
+                            <span class="arrow">›</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a data-bs-dismiss="offcanvas" class="menu-link" href="#" onclick="showContent('dati')">
+                            dati personali
+                            <span class="arrow">›</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a data-bs-dismiss="offcanvas" class="menu-link" href="#" onclick="showContent('esci')">
+                            esci
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
         <div class="form-login"> 
             <h1>Accedi o registrati</h1>
             <div class="box-form">

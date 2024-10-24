@@ -118,7 +118,7 @@ function showContent(section) {
                                 <p class="card-text">${auto.descrizione}</p>
                                 <p class="card-text"><strong>${auto.prezzo}</strong></p>
                                 <p class="card-text"><em>${auto.rata}</em></p>
-                                <a href="#" class="button">Scopri di più</a>
+                                <a href="#" class="button">scopri di più</a>
                             </div>
                         </div>
                 `
@@ -174,10 +174,10 @@ function showContent(section) {
                                         <label for="password" class="label-form">Password:</label>
                                         <input type="password" id="password" class="input-form" value="${password}">
                                     </div>
-                                    <button type="button" onclick="aggiornaDati()" class="button"">Aggiorna i tuoi dati</button>
+                                    <button type="button" onclick="aggiornaDati()" class="button"">aggiorna i tuoi dati</button>
                                 </form>
                                 <div class="mt-3">
-                                    <button type="button" onclick="documents()" class="button">I tuoi documenti</button>
+                                    <button type="button" onclick="documents()" class="button">i tuoi documenti</button>
                                 </div>
                                 <a href="#" class="delete-your-account text-danger mt-3 d-block">cancella il tuo account</a>
                             </div>
@@ -328,7 +328,7 @@ function caricaRicercheSalvate() {
                             filterContent += `</div>`; } 
                             
                             filterContent += `
-                            <button class="button scopripiu" onclick="scopriDiPiu">Scopri di più</button>
+                            <button class="button scopripiu" onclick="scopriDiPiu">scopri di più</button>
                             </div>`;
                             container.innerHTML += filterContent;
             });
