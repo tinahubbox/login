@@ -127,10 +127,7 @@ input:focus {
 }
 
 /* Impostazioni generali del menu */
-.dynamic-content{
-    margin-left: 80px;
 
-  }
 
   .user-menu {
     width: 470px; 
@@ -194,7 +191,7 @@ input:focus {
 }
 
 .card-img-left {
-    width: calc(100% + 20px); 
+    width: calc(100% + 2px); 
     height:100%;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
