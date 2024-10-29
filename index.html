@@ -457,7 +457,68 @@
                 </form>
             </div>
         </div>
-         
-</body> 
-<script src="login.js"> </script>
+    <script>
+     document.getElementById('form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('psw').value.trim();
+            let formValid = true;
+
+            // Controllo validità dei campi
+            if (!email) {
+                document.getElementById('error-email').innerText = 'Campo obbligatorio';
+                formValid = false;
+            } else {
+                document.getElementById('error-email').innerText = '';
+            }
+
+            if (!password) {
+                document.getElementById('error-psw').innerText = 'Campo obbligatorio';
+                formValid = false;
+            } else {
+                document.getElementById('error-psw').innerText = '';
+            }
+
+            // Se il form è valido, effettua l'autenticazione con OAuth2
+            if (formValid) {
+                fetch('https://auth.backend-dev.net/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json'
+                    },
+                    mode: 'no-cors',
+                    body: new URLSearchParams({
+                        'grant_type': 'password',
+                        'client_id': 'osiris', // Sostituisci con il tuo client ID
+                        'username': email,
+                        'password': password
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore di rete. Stato: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.accessToken) {
+                        // Salvataggio del token di accesso nel localStorage
+                        localStorage.setItem("accessToken", data.accessToken);
+                        localStorage.setItem("refreshToken", data.refreshToken);
+                        alert("Accesso completato!");
+                        window.location.href = "Accedi.html"; // Redirige alla tua area personale o dashboard
+                    } else {
+                        alert("Errore durante l'autenticazione. Per favore riprova.");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Errore durante l\'autenticazione:', error);
+                    alert("Si è verificato un errore durante l'accesso.");
+                });
+            }
+        });
+    </script>     
+</body> 
+</html>
