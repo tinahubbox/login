@@ -84,6 +84,9 @@ input:focus {
  
 
 }
+.row{
+    display: flex;
+}
 .card-body .button{
     width: 447px;
 }
@@ -7439,7 +7442,12 @@ header.sticky .logo-header-sticky {
     left: 0; 
     position: relative;
 }
-
+.card-body .button {
+    width: 200px;
+}
+.row .button {
+    width: 200px;
+}
 .card-body {
     width: 100%; 
     text-align: center; 
