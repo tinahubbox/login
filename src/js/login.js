@@ -89,7 +89,7 @@ function showContent(section) {
             //array
             const favorites=[
                 {
-                    img: 'rangeRover.jpg',
+                    img: '/assets/images/rangeRover.jpg',
                     marca: 'Land Rover',
                     modello: 'Range Rover Evoque',
                     descrizione: '2.0d i4 mhev S awd 150cv',
@@ -97,7 +97,7 @@ function showContent(section) {
                     rata: '€ 594 al mese'
                 },
                 {
-                    img: 'bmw.jpg',
+                    img: '/assets/images/bmw.jpg',
                     marca: 'BMW',
                     modello: 'X3',
                     descrizione: 'xdrive20d mhev 48V Business Advantage auto',
@@ -347,8 +347,8 @@ function caricaRicercheSalvate() {
 //funzione per le valutazioni 
 function caricaValutazioniSalvate(){
     fetch('https://jzm00xe65b.execute-api.eu-central-1.amazonaws.com/dev/evaluations', {
-        method:'GET', 
-        headers:{
+        method: 'GET', 
+        headers: {
             'Content-Type': 'application/json'
         },
     })
@@ -357,28 +357,31 @@ function caricaValutazioniSalvate(){
         console.log('Dati ricevuti dall\'API:', data);
 
         const valutazionicontainer = document.getElementById('valutazioni-salvate-container');
-        if(data.requestedEvaluations && data.requestedEvaluations.length>0){
-           valutazionicontainer.innerHTML='';
+        if(data.requestedEvaluations && data.requestedEvaluations.length > 0){
+            valutazionicontainer.innerHTML = '';
            
-           data.requestedEvaluations.forEach(auto=>{
-            let autoContent=  `<div class=valutazioni-item>
-            <div class="filter-line"><span class= "filter-strong"> Marca: </span> <span class="badge"> ${auto.brand} </span></div>
-            <div class="filter-line"><span class= "filter-strong"> Modello: </span> <span class="badge"> ${auto.model} </span></div>
-            <div class="filter-line"><span class= "filter-strong"> Versione: </span> <span class="badge"> ${auto.version} </span></div>
-            <div class="filter-line"><span class= "filter-strong"> Immatricolazione: </span> <span class="badge"> ${auto.registrationDate} </span></div>
-            <div class="filter-line"><span class= "filter-strong"> Chilometri: </span> <span class="badge"> ${auto.mileage} </span></div>
-            <div class="filter-line"><span class= "filter-strong"> Valutazione: </span> <span class="badge"> ${auto.evaluationPrice} </span></div>
-            </div> `;
-            valutazionicontainer.innerHTML += autoContent;
-           });
-        } else{
-            valutazionicontainer.innerHTML= '<p> Valuta ora la tua auto</p>';
+            data.requestedEvaluations.forEach(auto => {
+                let valutazione = auto.evaluationPrice === "N.D." ? auto.evaluationPrice : `${auto.evaluationPrice} €`;
+
+                let autoContent = `<div class="valutazioni-item">
+                    <div class="filter-line"><span class="filter-strong"> Marca: </span> <span class="badge"> ${auto.brand} </span></div>
+                    <div class="filter-line"><span class="filter-strong"> Modello: </span> <span class="badge"> ${auto.model} </span></div>
+                    <div class="filter-line"><span class="filter-strong"> Versione: </span> <span class="badge"> ${auto.version} </span></div>
+                    <div class="filter-line"><span class="filter-strong"> Immatricolazione: </span> <span class="badge"> ${auto.registrationDate} </span></div>
+                    <div class="filter-line"><span class="filter-strong"> Chilometri: </span> <span class="badge"> ${auto.mileage} Km </span></div>
+                    <div class="filter-line"><span class="filter-strong"> Valutazione: </span> <span class="badge"> ${valutazione} </span></div>
+                </div>`;
+                
+                valutazionicontainer.innerHTML += autoContent;
+            });
+        } else {
+            valutazionicontainer.innerHTML = '<p> Valuta ora la tua auto</p>';
         }
     })
     .catch((error) => {
         console.error('Errore durante il caricamento delle valutazioni auto:', error);
-        const valutazionicontainer= document.getElementById ('valutazioni-salvate-container'); 
-        valutazionicontainer.innerHTML='<p>Si è verificato un errore durante il caricamento delle valutazioni auto.</p>';
+        const valutazionicontainer = document.getElementById('valutazioni-salvate-container'); 
+        valutazionicontainer.innerHTML = '<p>Si è verificato un errore durante il caricamento delle valutazioni auto.</p>';
     });   
 }
 
@@ -404,5 +407,5 @@ function documents(){
 }
 function redirectToPersonalArea() {
     // Reindirizza alla pagina "Accedi.html"
-    window.location.href = 'Accedi.html';
+    window.location.href = '/src/accedi.html';
 }

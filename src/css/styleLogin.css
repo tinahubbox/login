@@ -1,18 +1,18 @@
 @font-face {
     font-family: 'Moderat-Black';
-    src: url(../Fonts/Moderat-Black.ttf);
+    src: url(/assets/fonts/Moderat-Black.ttf);
  }
  @font-face {
     font-family: 'Moderat-Bold';
-    src: url(../Fonts/Moderat-Bold.ttf);
+    src: url(/assets/fonts/Moderat-Bold.ttf);
  }
  @font-face {
     font-family: 'Moderat-Regular';
-    src: url(../Fonts/Moderat-Regular.ttf);
+    src: url(/assets/fonts/Moderat-Regular.ttf);
  }
  @font-face {
     font-family: 'Moderat-Medium';
-    src: url(../Fonts/Moderat-Medium.ttf);
+    src: url(/assets/fonts/Moderat-Medium.ttf);
  }
 
  body {
