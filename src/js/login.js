@@ -1,5 +1,16 @@
 //controllo sul form
 const form = document.getElementById('form');
+function matchPassword() {
+    var pw1 = document.getElementById("password").value;     
+    var pw2 = document.getElementById("checkpassword").value;
+    if (pw1 !== pw2) {
+        document.getElementById('error-checkpassword').innerText = "La password non coincide";
+        return false;
+    } else {
+        document.getElementById('error-checkpassword').innerText = ""; 
+        return true;
+    }
+}
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     var inputs = form.querySelectorAll('input:not(.button, #informativa)');   
@@ -15,7 +26,7 @@ form.addEventListener('submit', (e) => {
         }
     });
 
-    if (!matchPassword()) {
+    if (!matchPassword()) { //se le password non sono uguali il form è invalido quindi non salva i dati (vedi sopra)
         formValid = false;
     }
 
@@ -47,17 +58,7 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-function matchPassword() {
-    var pw1 = document.getElementById("password").value;     
-    var pw2 = document.getElementById("checkpassword").value;
-    if (pw1 !== pw2) {
-        document.getElementById('error-checkpassword').innerText = "La password non coincide";
-        return false;
-    } else {
-        document.getElementById('error-checkpassword').innerText = ""; 
-        return true;
-    }
-}
+
 	
 let privacy=document.querySelector('form');
 let checkbox = document.querySelector("input[id=informativa]");
@@ -72,6 +73,7 @@ privacy.addEventListener('submit', (e) => {
         errorPrivacy.innerText = '';
     }
 });
+//
 document.addEventListener('click', function(event) {
     const isClickInsideMenu = mobileMenu.contains(event.target);
     const isClickOnToggler = menuToggler.contains(event.target);
