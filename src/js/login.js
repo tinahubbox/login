@@ -43,7 +43,7 @@ form.addEventListener('submit', (e) => {
         localStorage.setItem("userPassword", password);
 
         alert("Registrazione completata!");
-        window.location.href = "Accedi.html";
+        window.location.href = "/src/accedi.html";
     }
 });
 
