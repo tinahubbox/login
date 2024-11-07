@@ -199,6 +199,8 @@ function showContent(section) {
                 <h1>Sei sicuro di voler uscire?</h1><br>
                 <button onclick="logout()" class="button">Esci</button>`;
             break;
+            default:
+            content = `<p>Errore di caricamento.</p>`;
       
                 
     }
